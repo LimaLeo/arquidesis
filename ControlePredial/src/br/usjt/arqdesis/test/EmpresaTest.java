@@ -23,14 +23,14 @@ public class EmpresaTest {
 			empresa.setIdEmpresa(id);
 			empresa.setCnpj("12.345.678/0001-99");
 			empresa.setRazaoSocial("Razao");
-			empresa.setHorarioDeFuncionamento("18:00");
+			empresa.setHorarioDeFuncionamento("18:00:00");
 			empresa.setTemperaturaMaximaAr(20);
 			
 			copia = new Empresa();
 			copia.setIdEmpresa(id);
 			copia.setCnpj("12.345.678/0001-99");
 			copia.setRazaoSocial("Razao");
-			copia.setHorarioDeFuncionamento("18:00");
+			copia.setHorarioDeFuncionamento("18:00:00");
 			copia.setTemperaturaMaximaAr(20);
 			
 			empService = new EmpresaService();
@@ -60,8 +60,12 @@ public class EmpresaTest {
 			System.out.println("Atualizar a Empresa");
 			empresa.setCnpj("99.876.543/0001-21");
 			empresa.setRazaoSocial("Social");
+			empresa.setHorarioDeFuncionamento("20:00:00");
+			empresa.setTemperaturaMaximaAr(10);
 			copia.setCnpj("99.876.543/0001-21");
 			copia.setRazaoSocial("Social");
+			copia.setHorarioDeFuncionamento("20:00:00");
+			copia.setTemperaturaMaximaAr(10);
 			empService.atualizar(empresa);
 			empresa = empService.carregar(empresa.getIdEmpresa());
 			assertEquals("Teste de Atualização", empresa, copia);

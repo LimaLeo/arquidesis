@@ -1,13 +1,14 @@
 package br.usjt.arqdesis.test;
 
 import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import br.usjt.arqdesis.model.*;
-import br.usjt.arqdesis.service.*;
+import br.usjt.arqdesis.model.Usuario;
+import br.usjt.arqdesis.service.UsuarioService;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class UsuarioTest {
