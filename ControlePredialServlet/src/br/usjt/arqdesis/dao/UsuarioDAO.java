@@ -35,12 +35,15 @@ public class UsuarioDAO {
 	}
 
 	public void atualizar(Usuario usuario) {
-		String sqlUpdate = "UPDATE USUARIO SET NOME=?, CPF=? WHERE ID=?";
+		String sqlUpdate = "UPDATE USUARIO SET NOME=?, CPF=?, LOGIN=?, SENHA=?, TIPO_USUARIO=? WHERE ID=?";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement ps = conn.prepareStatement(sqlUpdate);) {
 			ps.setString(1, usuario.getNomeUsuario());
 			ps.setString(2, usuario.getCpf());
-			ps.setInt(3, usuario.getIdUsuario());
+			ps.setString(3, usuario.getLogin());
+			ps.setString(4, usuario.getSenha());
+			ps.setString(5, usuario.getTipoUsuario());
+			ps.setInt(6, usuario.getIdUsuario());
 			ps.execute();
 		} catch (Exception e) {
 			e.printStackTrace();

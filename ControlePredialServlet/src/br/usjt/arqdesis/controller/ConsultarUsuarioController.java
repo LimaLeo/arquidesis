@@ -15,8 +15,8 @@ import br.usjt.arqdesis.service.UsuarioService;
 /**
  * Servlet implementation class ManterUsuarioController
  */
-@WebServlet("/ManterUsuario.do")
-public class ManterUsuarioController extends HttpServlet {
+@WebServlet("/ConsultarUsuario.do")
+public class ConsultarUsuarioController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     
     /**
@@ -30,24 +30,14 @@ public class ManterUsuarioController extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	String pNome = request.getParameter("nome");
-    	String pTipoUsuario = request.getParameter("tipo-usuario");
-        String pCpf = request.getParameter("cpf");
-        String pLogin = request.getParameter("login");
-        String pSenha = request.getParameter("senha");
+    	int pIdUsuario = Integer.parseInt(request.getParameter("id-usuario"));
         
         //instanciar o javabean
         Usuario usuario = new Usuario();
-        usuario.setNomeUsuario(pNome);
-        usuario.setTipoUsuario(pTipoUsuario);
-        usuario.setCpf(pCpf);
-        usuario.setLogin(pLogin);
-        usuario.setSenha(pSenha);
         
         //instanciar o service
         UsuarioService us = new UsuarioService();
-        us.criar(usuario);
-        usuario = us.carregar(usuario.getIdUsuario());
+        usuario = us.carregar(pIdUsuario);
         
         //enviar para o jsp
         request.setAttribute("usuario", usuario);

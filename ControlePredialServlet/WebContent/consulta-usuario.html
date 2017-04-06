@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cadastrar Usuario</title>
+    <title>Consulta Usuario</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -38,46 +38,23 @@
     </nav>
     <!-- Container Principal -->
     <div id="main" class="container">
-        <h3 class="page-header">Incluir Usuario</h3>
+        <h3 class="page-header">Consultar Usuario</h3>
         <!-- Formulario para inclusao de clientes -->
-        <form action="ManterUsuario.do" method="post">
+        <form action="ConsultarUsuario.do" method="get">
+            
             <!-- area de campos do form -->
-            <div class="row">
-                <div class="form-group col-md-12">
-                    <label for="nome">Nome</label>
-                    <input type="text" class="form-control" name="nome" id="nome" required maxlength="100" placeholder="nome completo">
-                </div>
-            </div>
+            
             <div class="row">
                 <div class="form-group col-md-6">
-                   <label for="tipo-usuario">Tipo de usuario</label>
-                   <select required class="form-control" name="tipo-usuario" id="tipo-usuario">
-			        <option>SINDICO</option>
-			        <option>ATENDENTE</option>
-			        <option>FUNCIONARIO</option>
-			      </select>
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label for="cpf">Cpf</label>
-                    <input type="cpf" required class="form-control" name="cpf" id="cpf" pattern="^(\d{3}\.\d{3}\.\d{3}-\d{2})|(\d{11})$" placeholder="cpf obrigatório">
+                    <label for="id-usuario">Id Usuario</label>
+                    <input type="number" required class="form-control" name="id-usuario" id="id-usuario" placeholder="id obrigatório">
                 </div>
             </div>
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label for="login">Login</label>
-                    <input type="text" required class="form-control" name="login" id="login" required maxlength="100" placeholder="usuario obrigatório">
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label for="senha">Senha</label>
-                    <input type="password" required class="form-control" name="senha" id="senha" maxlength="60" placeholder="senha obrigatória">
-                </div>
-            </div>
+           
             <hr />
             <div id="actions" class="row">
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary" name="acao" value="Criar">Salvar</button>
+                    <button type="submit" class="btn btn-primary" name="acao" value="Consultar">Consultar</button>
                     <a href="index.html" class="btn btn-default">Cancelar</a>
                 </div>
             </div>
