@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.usjt.arqdesis.model.Empresa;
+import br.usjt.arqdesis.model.Usuario;
 
 public class EmpresaDAO {
 	
@@ -87,6 +90,37 @@ public class EmpresaDAO {
 			System.out.print(e1.getStackTrace());
 		}
 		return empresa;
+	}
+
+	public List<Empresa> carregarTodasEmpresas() {
+		Empresa empresa;
+		
+		List<Empresa> lista = new ArrayList<Empresa>();
+		
+		String sqlSelect = "SELECT ID, CNPJ, RAZAO_SOCIAL, HORARIO_FUNCIONAMENTO, TEMPERATURA_MAXIMA_AR FROM empresa;";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			
+			try (ResultSet rs = stm.executeQuery();) {
+				while (rs.next()) {
+					
+					empresa = new Empresa();
+					empresa.setIdEmpresa(rs.getInt("ID"));
+					empresa.setCnpj(rs.getString("CNPJ"));
+					empresa.setRazaoSocial(rs.getString("RAZAO_SOCIAL"));
+					empresa.setHorarioDeFuncionamento(rs.getString("HORARIO_FUNCIONAMENTO"));
+					empresa.setTemperaturaMaximaAr(rs.getInt("TEMPERATURA_MAXIMA_AR"));
+					lista.add(empresa);
+					
+				} 
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return lista;
 	}
 	
 }

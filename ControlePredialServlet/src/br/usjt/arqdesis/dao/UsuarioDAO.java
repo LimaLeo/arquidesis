@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import br.usjt.arqdesis.model.Usuario;
 
 public class UsuarioDAO {
@@ -92,4 +95,36 @@ public class UsuarioDAO {
 		return usuario;
 	}
 	
+	public List<Usuario> carregarTodosUsuarios() {
+		Usuario usuario;
+		
+		List<Usuario> lista = new ArrayList<Usuario>();
+		
+		String sqlSelect = "SELECT ID, NOME, CPF, LOGIN, SENHA, TIPO_USUARIO FROM usuario;";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			
+			try (ResultSet rs = stm.executeQuery();) {
+				while (rs.next()) {
+					
+					usuario = new Usuario();
+					usuario.setIdUsuario(rs.getInt("ID"));
+					usuario.setNomeUsuario(rs.getString("NOME"));
+					usuario.setCpf(rs.getString("CPF"));
+					usuario.setLogin(rs.getString("LOGIN"));
+					usuario.setSenha(rs.getString("SENHA"));
+					usuario.setTipoUsuario(rs.getString("TIPO_USUARIO"));
+					
+					lista.add(usuario);
+					
+				} 
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return lista;
+	}
 }

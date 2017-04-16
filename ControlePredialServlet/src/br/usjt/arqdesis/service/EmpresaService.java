@@ -1,5 +1,7 @@
 package br.usjt.arqdesis.service;
 
+import java.util.List;
+
 import br.usjt.arqdesis.dao.EmpresaDAO;
 import br.usjt.arqdesis.model.Empresa;
 
@@ -20,5 +22,9 @@ public class EmpresaService {
 	
 	public Empresa carregar(int id){
 		return empDao.carregar(id);
+	}
+
+	public List<Empresa> carregarTodasEmpresas() {
+		return empDao.carregarTodasEmpresas();
 	}
 }
