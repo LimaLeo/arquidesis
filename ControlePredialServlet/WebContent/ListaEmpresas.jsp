@@ -47,9 +47,9 @@
 							<td>${empresa.cnpj}</td>
 							<td>${empresa.horarioDeFuncionamento}</td>
 							<td>${empresa.temperaturaMaximaAr}</td>
-							<td><button type="button" class="btn btn-success">Visualizar</button>
-								<button type="button" class="btn btn-warning">Consultar</button>
-								<button type="button" class="btn btn-danger">Excluir</button></td>
+							<td><a href="ConsultarEmpresa.do?id-empresa=${empresa.idEmpresa}" class="btn btn-success">Visualizar</a>
+								<a href="altera-empresa.html" class="btn btn-warning">Editar</a>
+								<a href="RemoverEmpresa.do?id-empresa=${empresa.idEmpresa}"class="btn btn-danger btn-delete">Excluir</a></td>
 						</tr>
 					</c:forEach>
 				</table>

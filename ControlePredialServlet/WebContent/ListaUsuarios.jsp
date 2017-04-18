@@ -47,9 +47,9 @@
 							<td>${usuario.cpf}</td>
 							<td>${usuario.login}</td>
 							<td>${usuario.tipoUsuario}</td>
-							<td><button type="button" class="btn btn-success">Visualizar</button>
-								<button type="button" class="btn btn-warning">Consultar</button>
-								<button type="button" class="btn btn-danger">Excluir</button></td>
+							<td><a href="ConsultarUsuario.do?id-usuario=${usuario.idUsuario}" class="btn btn-success">Visualizar</a>
+								<a href="altera-usuario.html" class="btn btn-warning">Editar</a>
+								<a href="RemoverUsuario.do?id-usuario=${usuario.idUsuario}"class="btn btn-danger btn-delete">Excluir</a></td>
 						</tr>
 					</c:forEach>
 				</table>
