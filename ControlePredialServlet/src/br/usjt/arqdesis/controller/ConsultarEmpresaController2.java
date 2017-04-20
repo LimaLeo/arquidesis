@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
 
 import br.usjt.arqdesis.model.Empresa;
 import br.usjt.arqdesis.service.EmpresaService;
@@ -17,8 +16,8 @@ import br.usjt.arqdesis.service.EmpresaService;
 /**
  * Servlet implementation class ManterClienteController
  */
-@WebServlet("/ConsultarEmpresa.do")
-public class ConsultarEmpresaController extends HttpServlet{
+@WebServlet("/ConsultarEmpresaAlterar.do")
+public class ConsultarEmpresaController2 extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,8 +28,6 @@ public class ConsultarEmpresaController extends HttpServlet{
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	JOptionPane.showMessageDialog(null, request.getParameter("id-empresa"));
-    	System.out.println(request.getParameter("id-empresa"));
     	int pIdEmpresa = Integer.parseInt(request.getParameter("id-empresa"));
         
         //instanciar o javabean
@@ -44,7 +41,7 @@ public class ConsultarEmpresaController extends HttpServlet{
         request.setAttribute("empresa", empresa);
         
         RequestDispatcher view = 
-        request.getRequestDispatcher("Empresa.jsp");
+        request.getRequestDispatcher("AlterarEmpresa.jsp");
         view.forward(request, response);
         
     }
