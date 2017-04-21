@@ -29,8 +29,6 @@ public class ConsultarEmpresaController extends HttpServlet{
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	JOptionPane.showMessageDialog(null, request.getParameter("id-empresa"));
-    	System.out.println(request.getParameter("id-empresa"));
     	int pIdEmpresa = Integer.parseInt(request.getParameter("id-empresa"));
         
         //instanciar o javabean

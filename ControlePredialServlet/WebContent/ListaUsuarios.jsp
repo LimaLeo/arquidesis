@@ -48,7 +48,7 @@
 							<td>${usuario.login}</td>
 							<td>${usuario.tipoUsuario}</td>
 							<td><a href="ConsultarUsuario.do?id-usuario=${usuario.idUsuario}" class="btn btn-success">Visualizar</a>
-								<a href="altera-usuario.html" class="btn btn-warning">Editar</a>
+								<a href="ConsultarUsuarioAlterar.do?id-usuario=${usuario.idUsuario}" class="btn btn-warning">Editar</a>
 								<a href="RemoverUsuario.do?id-usuario=${usuario.idUsuario}"class="btn btn-danger btn-delete">Excluir</a></td>
 						</tr>
 					</c:forEach>

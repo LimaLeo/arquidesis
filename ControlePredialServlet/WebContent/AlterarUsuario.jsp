@@ -1,19 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@page import="br.usjt.arqdesis.model.Empresa" %>
+    <%@page import="br.usjt.arqdesis.model.Usuario" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
- <meta charset="utf-8">
+ 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Alterar Empresa</title>
+    <title>Alterar Usuario</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-	<%Empresa empresa=( Empresa)request.getAttribute( "empresa"); %>
 	  <!-- Barra superior com os menus de navegação -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
@@ -24,10 +23,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="cadastro-empresa.html">Cadastrar</a>
-            	<a class="navbar-brand" href="consulta-empresa.html">Consultar</a>
-            	<a class="navbar-brand" href="altera-empresa.html">Alterar</a>
-            	<a class="navbar-brand" href="remove-empresa.html">Remover</a>	
+                <a class="navbar-brand" href="cadastro-usuario.html">Cadastrar</a>
+                <a class="navbar-brand" href="consulta-usuario.html">Consultar</a>
+                <a class="navbar-brand" href="altera-usuario.html">Alterar</a>
+                <a class="navbar-brand" href="remove-usuario.html">Remover</a>
+                
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -39,32 +39,44 @@
     </nav>
     <!-- Container Principal -->
     <div id="main" class="container">
-        <h3 class="page-header">Alterar Empresa</h3>
-        <!-- Formulario para inclusao de Empresas -->
-        <form action="AlterarEmpresa.do" method="post">
+        <h3 class="page-header">Alterar Usuario</h3>
+        <!-- Formulario para inclusao de clientes -->
+        <form action="AlterarUsuario.do" method="post">
             <!-- area de campos do form -->
             <div class="row">
-           		<div class="form-group col-md-6">
-                    <label for="id-empresa">Id Empresa</label>
-                    <input type="number"  value= "${empresa.idEmpresa}" class="form-control" name="id-empresa" id="id-empresa" disabled>
+            	<div class="form-group col-md-12">
+                    <label for="nome">Id Usuario</label>
+                    <input type="number" value= "${usuario.idUsuario}" class="form-control" name="id-usuario" id="id-usuario" required maxlength="100" placeholder="id obrigatório">
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="razao-social">Razao Social</label>
-                    <input type="text" value= "${empresa.razaoSocial}" class="form-control" name="razao-social" id="razao-social" required maxlength="100" placeholder="razao social obrigatória">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="cnpj">CNPJ</label>
-                    <input type="text" value= "${empresa.cnpj}" required class="form-control" name="cnpj" id="cnpj" pattern="^(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})|(\d{14})$" placeholder="cnpj obrigatório">
+                <div class="form-group col-md-12">
+                    <label for="nome">Nome</label>
+                    <input type="text" value= "${usuario.nomeUsuario}" class="form-control" name="nome" id="nome" required maxlength="100" placeholder="nome completo">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-6">
-                   <label for="horario-de-funcionamento">Horario de Funcionamento</label>
-                   <input type="text" value= "${empresa.horarioDeFuncionamento}" class="form-control" name="horario-de-funcionamento" id="horaio-de-funcionamento" required maxlength="20" placeholder="horario de funcionamento obrigatório">
+                   <label for="tipo-usuario">Tipo de usuario</label>
+                   <select required class="form-control" name="tipo-usuario" id="tipo-usuario">
+			        <option>SINDICO</option>
+			        <option>ATENDENTE</option>
+			        <option>FUNCIONARIO</option>
+			      </select>
                 </div>
+
                 <div class="form-group col-md-6">
-                    <label for="temperatura-maxima-ar">Temperatura Maxima do Ar</label>
-                    <input type="text" value= "${empresa.temperaturaMaximaAr}" required class="form-control" name="temperatura-maxima-ar" id="temperatura-maxima-ar" placeholder="temperatura maxima do ar obrigatória">
+                    <label for="cpf">Cpf</label>
+                    <input type="cpf" value= "${usuario.cpf}" required class="form-control" name="cpf" id="cpf" pattern="^(\d{3}\.\d{3}\.\d{3}-\d{2})|(\d{11})$" placeholder="cpf obrigatório">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="login">Login</label>
+                    <input type="text" value= "${usuario.login}" required class="form-control" name="login" id="login" required maxlength="100" placeholder="usuario obrigatório">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="senha">Senha</label>
+                    <input type="password" value= "${usuario.senha}" required class="form-control" name="senha" id="senha" maxlength="60" placeholder="senha obrigatória">
                 </div>
             </div>
             <hr />
@@ -78,6 +90,5 @@
     </div>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-	
 </body>
 </html>
