@@ -31,7 +31,8 @@ public class ConsultarUsuarioController extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	int pIdUsuario = Integer.parseInt(request.getParameter("id-usuario"));
-        
+    	String btn = request.getParameter("btn");
+    	
         //instanciar o javabean
         Usuario usuario = new Usuario();
         
@@ -41,9 +42,14 @@ public class ConsultarUsuarioController extends HttpServlet {
         
         //enviar para o jsp
         request.setAttribute("usuario", usuario);
+        RequestDispatcher view;
         
-        RequestDispatcher view = 
-        request.getRequestDispatcher("Usuario.jsp");
+        if( btn.equals("editar") ){
+        	view = request.getRequestDispatcher("AlterarUsuario.jsp");
+
+        }else{
+            view = request.getRequestDispatcher("Usuario.jsp");
+        }
         view.forward(request, response);
         
     }

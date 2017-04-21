@@ -47,8 +47,8 @@
 							<td>${usuario.cpf}</td>
 							<td>${usuario.login}</td>
 							<td>${usuario.tipoUsuario}</td>
-							<td><a href="ConsultarUsuario.do?id-usuario=${usuario.idUsuario}" class="btn btn-success">Visualizar</a>
-								<a href="ConsultarUsuarioAlterar.do?id-usuario=${usuario.idUsuario}" class="btn btn-warning">Editar</a>
+							<td><a href="ConsultarUsuario.do?id-usuario=${usuario.idUsuario}&btn=visualizar" class="btn btn-success">Visualizar</a>
+								<a href="ConsultarUsuario.do?id-usuario=${usuario.idUsuario}&btn=editar" class="btn btn-warning">Editar</a>
 								<a href="RemoverUsuario.do?id-usuario=${usuario.idUsuario}"class="btn btn-danger btn-delete">Excluir</a></td>
 						</tr>
 					</c:forEach>

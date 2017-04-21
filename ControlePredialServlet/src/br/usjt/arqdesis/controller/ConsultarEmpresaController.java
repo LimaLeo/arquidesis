@@ -30,6 +30,7 @@ public class ConsultarEmpresaController extends HttpServlet{
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	int pIdEmpresa = Integer.parseInt(request.getParameter("id-empresa"));
+    	String btn = request.getParameter("btn");
         
         //instanciar o javabean
         Empresa empresa = new Empresa();
@@ -40,11 +41,15 @@ public class ConsultarEmpresaController extends HttpServlet{
         
         //enviar para o jsp
         request.setAttribute("empresa", empresa);
+        RequestDispatcher view;
         
-        RequestDispatcher view = 
-        request.getRequestDispatcher("Empresa.jsp");
+        if( btn.equals("editar") ){
+        	view = request.getRequestDispatcher("AlterarEmpresa.jsp");
+
+        }else{
+            view = request.getRequestDispatcher("Empresa.jsp");
+        }
         view.forward(request, response);
-        
+
     }
-	
 }
