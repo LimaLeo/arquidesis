@@ -1,8 +1,8 @@
 package br.usjt.arqdesis.model;
 
 public class Empresa {
-	private String cnpj, razaoSocial, horarioDeFuncionamento;
-	private int idEmpresa, temperaturaMaximaAr;
+	String cnpj, razaoSocial, horarioDeFuncionamento;
+	int idEmpresa, temperaturaMaximaAr;
 
 	// Getters and Setters
 	public int getIdEmpresa() {

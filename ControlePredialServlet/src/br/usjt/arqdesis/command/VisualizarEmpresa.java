@@ -13,7 +13,7 @@ import br.usjt.arqdesis.service.EmpresaService;
 public class VisualizarEmpresa implements Command {
 
 	@Override
-	public void executar(HttpServletRequest request,
+	public void executar(HttpServletRequest request,			
 			HttpServletResponse response) throws ServletException, IOException {
 		String pIdEmpresa = request.getParameter("id");
 		String pRazaoSocial = request.getParameter("razao-social");
@@ -28,12 +28,19 @@ public class VisualizarEmpresa implements Command {
 
 		}
         
+        int temperatura = -1;
+        try {
+			temperatura = Integer.parseInt(pTemperaturaMaximaAr);
+		} catch (NumberFormatException e) {
+
+		}
+        
         Empresa empresa = new Empresa();
         empresa.setIdEmpresa(id);
         empresa.setRazaoSocial(pRazaoSocial);
         empresa.setCnpj(pCnpj);
         empresa.setHorarioDeFuncionamento(pHorarioDeFuncionamento);
-        empresa.setTemperaturaMaximaAr(Integer.parseInt(pTemperaturaMaximaAr));
+        empresa.setTemperaturaMaximaAr(temperatura);
 		
 		RequestDispatcher view = null;
 
