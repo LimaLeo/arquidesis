@@ -13,9 +13,9 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="ListarEmpresas">Empresas</a>
+                    <li><a href="ListarEmpresas.jsp">Empresas</a>
                     </li>
-                    <li><a href="ListarUsuarios">Usuarios</a>
+                    <li><a href="ListarUsuarios.jsp">Usuarios</a>
                     </li>
                 </ul>
             </div>
