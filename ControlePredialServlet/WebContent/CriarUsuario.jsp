@@ -40,7 +40,7 @@
     <div id="main" class="container">
         <h3 class="page-header">Incluir Usuario</h3>
         <!-- Formulario para inclusao de clientes -->
-        <form action="ManterUsuario.do" method="post">
+        <form action="controller.do" method="post">
             <!-- area de campos do form -->
             <div class="row">
                 <div class="form-group col-md-12">

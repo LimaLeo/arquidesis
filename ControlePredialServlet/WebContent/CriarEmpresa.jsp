@@ -40,7 +40,7 @@
     <div id="main" class="container">
         <h3 class="page-header">Cadastrar Empresa</h3>
         <!-- Formulario para inclusao de Empresas -->
-        <form action="ManterEmpresa.do" method="post">
+        <form action="controller.do" method="post">
             <!-- area de campos do form -->
             <div class="row">
                 <div class="form-group col-md-6">
