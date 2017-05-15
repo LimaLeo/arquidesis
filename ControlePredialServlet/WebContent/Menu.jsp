@@ -15,7 +15,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="ListarEmpresas.jsp">Empresas</a>
                     </li>
-                    <li><a href="ListarUsuariosReiniciar.jsp">Usuarios</a>
+                    <li><a href=controller.do?command=ListarUsuariosReiniciar>Usuarios</a>
                     </li>
                 </ul>
             </div>
