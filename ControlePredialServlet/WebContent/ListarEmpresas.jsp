@@ -101,7 +101,7 @@
                                             </td>
                                             <td class="actions">
                                                 <a class="btn btn-success btn-xs" href="controller.do?command=VisualizarEmpresa&id=${empresa.idEmpresa }">Visualizar</a>
-                                                <a class="btn btn-warning btn-xs" href="controller.do?command=EditarEmpresa&id=${empresa.idEmpresa }">Editar</a>
+                                                <a class="btn btn-warning btn-xs" href="controller.do?command=AlterarEmpresa&id=${empresa.idEmpresa }">Editar</a>
                                                 <button id="btn${empresa.idEmpresa }%>" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" data-cliente="${empresa.idEmpresa }">Excluir</button>
                                             </td>
                                         </tr>             
