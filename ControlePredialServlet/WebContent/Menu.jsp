@@ -9,17 +9,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.jsp">cerveja.biz</a>
+                <a class="navbar-brand" href="index.jsp">Controle Predial</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="controller.do?command=ListarClientesReiniciar">Clientes</a>
+                    <li><a href="ListarEmpresas">Empresas</a>
                     </li>
-                    <li><a href="#">Marcas</a>
-                    </li>
-                    <li><a href="#">Estilos</a>
-                    </li>
-                    <li><a href="#">Países</a>
+                    <li><a href="ListarUsuarios">Usuarios</a>
                     </li>
                 </ul>
             </div>
