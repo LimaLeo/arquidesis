@@ -24,10 +24,8 @@ public class CriarEmpresa implements Command {
         String pTemperaturaMaximaAr = request.getParameter("temperatura-maxima-ar");
         
         int id = -1;
-        int tempAr = -1;
 		try {
 			id = Integer.parseInt(pIdEmpresa);
-			tempAr = Integer.parseInt(pTemperaturaMaximaAr);
 		} catch (NumberFormatException e) {
 
 		}
@@ -37,7 +35,7 @@ public class CriarEmpresa implements Command {
         empresa.setRazaoSocial(pRazaoSocial);
         empresa.setCnpj(pCnpj);
         empresa.setHorarioDeFuncionamento(pHorarioDeFuncionamento);
-        empresa.setTemperaturaMaximaAr(tempAr);
+        empresa.setTemperaturaMaximaAr(Integer.parseInt(pTemperaturaMaximaAr));
         EmpresaService es = new EmpresaService();
         
         RequestDispatcher view = null;
