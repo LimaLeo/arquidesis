@@ -7,7 +7,7 @@
             <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>Buscar Clientes</title>
+            <title>Buscar Usuarios</title>
 
             <link href="css/bootstrap.min.css" rel="stylesheet">
             <link href="css/style.css" rel="stylesheet">
@@ -45,14 +45,14 @@
                 <form action="controller.do" method="post">
                     <div id="top" class="row">
                         <div class="col-md-3">
-                            <h2>Clientes</h2>
+                            <h2>Usuarios</h2>
                         </div>
 
                         <div class="col-md-6">
                             <div class="input-group h2">
-                                <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Clientes (deixe vazio para trazer todos)">
+                                <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Usuarios (deixe vazio para trazer todos)">
                                 <span class="input-group-btn">
-                <button class="btn btn-primary" type="submit" name="command" value="ListarClientesBuscar">
+                <button class="btn btn-primary" type="submit" name="command" value="ListarUsuariosBuscar">
                     <span class="glyphicon glyphicon-search"></span>
                                 </button>
                                 </span>
@@ -60,7 +60,7 @@
                         </div>
 
                         <div class="col-md-3">
-                            <a href="CriarCliente.jsp" class="btn btn-primary pull-right h2">Novo Cliente</a>
+                            <a href="CriarUsuario.jsp" class="btn btn-primary pull-right h2">Novo Usuario</a>
                         </div>
                     </div>
                     <!-- /#top -->
@@ -75,30 +75,34 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Nome</th>
-                                    <th>Celular</th>
-                                    <th>E-Mail</th>
+                                    <th>CPF</th>
+                                    <th>Login</th>
+                                    <th>Tipo Usuário</th>                                    
                                     <th class="actions">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
-          					<c:forEach var="cliente" items="${lista }">
+          					<c:forEach var="usuario" items="${lista }">
                                        <tr>
                                             <td>
-                                               ${cliente.id }
+                                               ${usuario.idUsuario }
                                             </td>
                                             <td>
-                                                ${cliente.nome }
+                                                ${usuario.nomeUsuario }
                                             </td>
                                             <td>
-                                                ${cliente.fone }
+                                                ${usuario.cpf }
                                             </td>
                                             <td>
-                                                ${cliente.email }
+                                                ${usuario.login }
+                                            </td>
+                                            <td>
+                                                ${usuario.tipoUsuario }
                                             </td>
                                             <td class="actions">
-                                                <a class="btn btn-success btn-xs" href="controller.do?command=VisualizarCliente&id=${cliente.id }">Visualizar</a>
-                                                <a class="btn btn-warning btn-xs" href="controller.do?command=EditarCliente&id=${cliente.id }">Editar</a>
-                                                <button id="btn${cliente.id }%>" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" data-cliente="${cliente.id }">Excluir</button>
+                                                <a class="btn btn-success btn-xs" href="controller.do?command=VisualizarUsuario&id=${usuario.idUsuario }">Visualizar</a>
+                                                <a class="btn btn-warning btn-xs" href="controller.do?command=AlterarUsuario&id=${usuario.idUsuario }">Editar</a>
+                                                <button id="btn${usuario.idUsuario }%>" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" data-cliente="${usuario.idUsuario }">Excluir</button>
                                             </td>
                                         </tr>             
                             </c:forEach>

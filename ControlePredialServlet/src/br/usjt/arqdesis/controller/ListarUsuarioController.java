@@ -35,7 +35,7 @@ public class ListarUsuarioController extends HttpServlet {
 	
 		UsuarioService us = new UsuarioService();
 		
-		List<Usuario> lista = us.carregarTodosUsuarios();
+		List<Usuario> lista = us.listarUsuarios();
 		
 		
         //enviar para o jsp
