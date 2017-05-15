@@ -13,7 +13,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="ListarEmpresas.jsp">Empresas</a>
+                    <li><a href="controller.do?command=ListarEmpresasReiniciar">Empresas</a>
                     </li>
                     <li><a href=controller.do?command=ListarUsuariosReiniciar>Usuarios</a>
                     </li>
