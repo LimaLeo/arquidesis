@@ -18,7 +18,7 @@ public class AlterarEmpresa implements Command {
 	@Override
 	public void executar(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String pIdEmpresa = request.getParameter("id-empresa");
+		String pIdEmpresa = request.getParameter("id");
     	String pRazaoSocial = request.getParameter("razao-social");
     	String pCnpj = request.getParameter("cnpj");
         String pHorarioDeFuncionamento = request.getParameter("horario-de-funcionamento");
@@ -31,13 +31,20 @@ public class AlterarEmpresa implements Command {
 
 		}
 		
+		int temperatura = -1;
+		try {
+			temperatura = Integer.parseInt(pTemperaturaMaximaAr);
+		} catch (NumberFormatException e) {
+
+		}
+		
         //instanciar o javabean
         Empresa empresa = new Empresa();
         empresa.setIdEmpresa(id);
         empresa.setRazaoSocial(pRazaoSocial);
         empresa.setCnpj(pCnpj);
         empresa.setHorarioDeFuncionamento(pHorarioDeFuncionamento);
-        empresa.setTemperaturaMaximaAr(Integer.parseInt(pTemperaturaMaximaAr));
+        empresa.setTemperaturaMaximaAr(temperatura);
         
         //instanciar o service
         EmpresaService es = new EmpresaService();
@@ -56,8 +63,8 @@ public class AlterarEmpresa implements Command {
 		lista.remove(pos);
 		lista.add(pos, empresa);
 		session.setAttribute("lista", lista);
-		request.setAttribute("usuario", empresa);
-		view = request.getRequestDispatcher("AlterarUsuario.jsp");
+		request.setAttribute("empresa", empresa);
+		view = request.getRequestDispatcher("VisualizarEmpresa.jsp");
 
 		view.forward(request, response);
 	}

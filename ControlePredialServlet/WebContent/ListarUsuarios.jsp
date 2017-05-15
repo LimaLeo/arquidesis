@@ -101,7 +101,7 @@
                                             </td>
                                             <td class="actions">
                                                 <a class="btn btn-success btn-xs" href="controller.do?command=VisualizarUsuario&id=${usuario.idUsuario }">Visualizar</a>
-                                                <a class="btn btn-warning btn-xs" href="controller.do?command=AlterarUsuario&id=${usuario.idUsuario }">Editar</a>
+                                                <a class="btn btn-warning btn-xs" href="controller.do?command=EditarUsuario&id=${usuario.idUsuario }">Editar</a>
                                                 <button id="btn${usuario.idUsuario }%>" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" data-cliente="${usuario.idUsuario }">Excluir</button>
                                             </td>
                                         </tr>             

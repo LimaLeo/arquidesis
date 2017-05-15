@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>cerveja.biz - Alterar Cliente</title>
+<title>cerveja.biz - Alterar Usuario</title>
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
@@ -27,9 +27,10 @@
 			<input type="hidden" name="id" value="${usuario.idUsuario}" />
 			<div class="row">
 				<div class="form-group col-md-12">
-					<label for="nome">Nome</label> <input type="text"
+					<label for="nome">Nome</label>
+					<input type="text"
 						value="${usuario.nomeUsuario}" class="form-control" name="nome"
-						id="nome" required maxlength="100" placeholder="nome completo">
+						id="nome" required maxlength="100" placeholder="nome completo" >
 				</div>
 			</div>
 			<div class="row">
@@ -43,7 +44,8 @@
 				</div>
 
 				<div class="form-group col-md-6">
-					<label for="cpf">Cpf</label> <input type="cpf"
+					<label for="cpf">Cpf</label>
+					<input type="cpf"
 						value="${usuario.cpf}" required class="form-control" name="cpf"
 						id="cpf" pattern="^(\d{3}\.\d{3}\.\d{3}-\d{2})|(\d{11})$"
 						placeholder="cpf obrigatório">

@@ -25,13 +25,7 @@
 		<form action="controller.do" method="post">
 			<!-- area de campos do form -->
 			<input type="hidden" name="id" value="${empresa.idEmpresa}" />
-			<div class="row">
-				<div class="form-group col-md-6">
-					<label for="id-empresa">Id Empresa</label><br /> <input
-						type="number" value="${empresa.idEmpresa}" class="form-control"
-						name="id-empresa" id="id-empresa" placeholder="id obrigatório"
-						readonly>
-				</div>
+			<div class="row">	
 				<div class="form-group col-md-6">
 					<label for="razao-social">Razao Social</label> <input type="text"
 						value="${empresa.razaoSocial}" class="form-control"

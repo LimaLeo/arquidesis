@@ -17,7 +17,7 @@ public class AlterarUsuario implements Command{
 	@Override
 	public void executar(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String pIdUsuario = request.getParameter("id-usuario");
+		String pIdUsuario = request.getParameter("id");
     	String pNome = request.getParameter("nome");
     	String pTipoUsuario = request.getParameter("tipo-usuario");
         String pCpf = request.getParameter("cpf");
@@ -39,24 +39,22 @@ public class AlterarUsuario implements Command{
         usuario.setCpf(pCpf);
         usuario.setLogin(pLogin);
         usuario.setSenha(pSenha);
-        
-        //instanciar o service
         UsuarioService us = new UsuarioService();
-        us.atualizar(usuario);
         
         RequestDispatcher view = null;
 		HttpSession session = request.getSession();
 
 		us.atualizar(usuario);
 		@SuppressWarnings("unchecked")
+
 		ArrayList<Usuario> lista = (ArrayList<Usuario>) session
-				.getAttribute("lista");
+			.getAttribute("lista");
 		int pos = busca(usuario, lista);
 		lista.remove(pos);
 		lista.add(pos, usuario);
 		session.setAttribute("lista", lista);
 		request.setAttribute("usuario", usuario);
-		view = request.getRequestDispatcher("AlterarUsuario.jsp");
+		view = request.getRequestDispatcher("VisualizarUsuario.jsp");
 
 		view.forward(request, response);
 	}
