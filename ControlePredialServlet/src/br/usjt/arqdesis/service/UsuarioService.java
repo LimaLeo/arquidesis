@@ -1,5 +1,6 @@
 package br.usjt.arqdesis.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.usjt.arqdesis.dao.UsuarioDAO;
@@ -24,7 +25,11 @@ public class UsuarioService {
 			return uDao.carregar(id);
 		}
 
-		public List<Usuario> carregarTodosUsuarios(){
-			return uDao.carregarTodosUsuarios();
+		public ArrayList<Usuario> listarUsuarios(){
+			return uDao.listarUsuarios();
+		}
+		
+		public ArrayList<Usuario> listarUsuarios(String chave){
+			return uDao.listarUsuarios(chave);
 		}
 }

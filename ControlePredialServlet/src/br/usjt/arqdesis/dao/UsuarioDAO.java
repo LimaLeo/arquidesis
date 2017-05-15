@@ -95,10 +95,10 @@ public class UsuarioDAO {
 		return usuario;
 	}
 	
-	public List<Usuario> carregarTodosUsuarios() {
+	public ArrayList<Usuario> listarUsuarios() {
 		Usuario usuario;
 		
-		List<Usuario> lista = new ArrayList<Usuario>();
+		ArrayList<Usuario> lista = new ArrayList<Usuario>();
 		
 		String sqlSelect = "SELECT ID, NOME, CPF, LOGIN, SENHA, TIPO_USUARIO FROM usuario;";
 		// usando o try with resources do Java 7, que fecha o que abriu
@@ -119,6 +119,35 @@ public class UsuarioDAO {
 					lista.add(usuario);
 					
 				} 
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return lista;
+	}
+	
+	public ArrayList<Usuario> listarUsuarios(String chave) {
+		Usuario usuario;
+		ArrayList<Usuario> lista = new ArrayList<>();
+		String sqlSelect = "SELECT ID, NOME, CPF, LOGIN, SENHA, TIPO_USUARIO FROM usuario where upper(nome) like ?";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			stm.setString(1, "%" + chave.toUpperCase() + "%");
+			try (ResultSet rs = stm.executeQuery();) {
+				while (rs.next()) {
+					usuario = new Usuario();
+					usuario.setIdUsuario(rs.getInt("id"));
+					usuario.setNomeUsuario(rs.getString("nome"));
+					usuario.setCpf(rs.getString("cpf"));
+					usuario.setLogin(rs.getString("login"));
+					usuario.setSenha(rs.getString("senha"));
+					usuario.setTipoUsuario(rs.getString("tipo_usuario"));
+					
+					lista.add(usuario);
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
