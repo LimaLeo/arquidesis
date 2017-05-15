@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.usjt.arqdesis.model.Empresa;
+import br.usjt.arqdesis.model.Usuario;
 
 public class EmpresaDAO {
 	
@@ -91,10 +92,10 @@ public class EmpresaDAO {
 		return empresa;
 	}
 
-	public ArrayList<Empresa> listarEmpresas() {
+	public List<Empresa> carregarTodasEmpresas() {
 		Empresa empresa;
 		
-		ArrayList<Empresa> lista = new ArrayList<Empresa>();
+		List<Empresa> lista = new ArrayList<Empresa>();
 		
 		String sqlSelect = "SELECT ID, CNPJ, RAZAO_SOCIAL, HORARIO_FUNCIONAMENTO, TEMPERATURA_MAXIMA_AR FROM empresa;";
 		// usando o try with resources do Java 7, que fecha o que abriu
@@ -121,35 +122,5 @@ public class EmpresaDAO {
 		}
 		return lista;
 	}
-
-	public ArrayList<Empresa> listarEmpresas(String chave) {
-		Empresa empresa;
-		
-		ArrayList<Empresa> lista = new ArrayList<Empresa>();
-		
-		String sqlSelect = "SELECT ID, CNPJ, RAZAO_SOCIAL, HORARIO_FUNCIONAMENTO, TEMPERATURA_MAXIMA_AR FROM empresa where upper(razao_social) like ?";
-		// usando o try with resources do Java 7, que fecha o que abriu
-		try (Connection conn = ConnectionFactory.obtemConexao();
-				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
-			stm.setString(1, "%" + chave.toUpperCase() + "%");
-			try (ResultSet rs = stm.executeQuery();) {
-				while (rs.next()) {					
-					empresa = new Empresa();
-					empresa.setIdEmpresa(rs.getInt("ID"));
-					empresa.setCnpj(rs.getString("CNPJ"));
-					empresa.setRazaoSocial(rs.getString("RAZAO_SOCIAL"));
-					empresa.setHorarioDeFuncionamento(rs.getString("HORARIO_FUNCIONAMENTO"));
-					empresa.setTemperaturaMaximaAr(rs.getInt("TEMPERATURA_MAXIMA_AR"));
-					
-					lista.add(empresa);					
-				} 
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} catch (SQLException e1) {
-			System.out.print(e1.getStackTrace());
-		}
-		return lista;
-	}
-
+	
 }

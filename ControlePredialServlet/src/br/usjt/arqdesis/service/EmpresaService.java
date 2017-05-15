@@ -1,10 +1,9 @@
 package br.usjt.arqdesis.service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import br.usjt.arqdesis.dao.EmpresaDAO;
 import br.usjt.arqdesis.model.Empresa;
-import br.usjt.arqdesis.model.Usuario;
 
 public class EmpresaService {
 	EmpresaDAO empDao = new EmpresaDAO();
@@ -25,11 +24,7 @@ public class EmpresaService {
 		return empDao.carregar(id);
 	}
 
-	public ArrayList<Empresa> listarEmpresas() {
-		return empDao.listarEmpresas();
-	}
-	
-	public ArrayList<Empresa> listarEmpresas(String chave){
-		return empDao.listarEmpresas(chave);
+	public List<Empresa> carregarTodasEmpresas() {
+		return empDao.carregarTodasEmpresas();
 	}
 }

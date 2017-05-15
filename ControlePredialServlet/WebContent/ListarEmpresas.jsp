@@ -7,7 +7,7 @@
             <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>Buscar Empresas</title>
+            <title>Buscar Clientes</title>
 
             <link href="css/bootstrap.min.css" rel="stylesheet">
             <link href="css/style.css" rel="stylesheet">
@@ -22,15 +22,15 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span>
                             </button>
-                            <h4 class="modal-title" id="modalLabel">Excluir Empresa</h4>
+                            <h4 class="modal-title" id="modalLabel">Excluir Cliente</h4>
                         </div>
                         <div class="modal-body">
-                            Deseja realmente excluir esta empresa?
+                            Deseja realmente excluir este cliente?
                         </div>
                         <div class="modal-footer">
                             <form action="controller.do" method="post">
                                 <input type="hidden" name="id" id="id_excluir" />
-                                <button type="submit" class="btn btn-primary" name="command" value="ExcluirEmpresa">Sim</button>
+                                <button type="submit" class="btn btn-primary" name="command" value="ExcluirCliente">Sim</button>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">N&atilde;o</button>
                             </form>
                         </div>
@@ -45,12 +45,12 @@
                 <form action="controller.do" method="post">
                     <div id="top" class="row">
                         <div class="col-md-3">
-                            <h2>Empresas</h2>
+                            <h2>Clientes</h2>
                         </div>
 
                         <div class="col-md-6">
                             <div class="input-group h2">
-                                <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Empresas (deixe vazio para trazer todos)">
+                                <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Clientes (deixe vazio para trazer todos)">
                                 <span class="input-group-btn">
                 <button class="btn btn-primary" type="submit" name="command" value="ListarEmpresasBuscar">
                     <span class="glyphicon glyphicon-search"></span>
@@ -60,7 +60,7 @@
                         </div>
 
                         <div class="col-md-3">
-                            <a href="CriarEmpresa.jsp" class="btn btn-primary pull-right h2">Nova Empresa</a>
+                            <a href="CriarCliente.jsp" class="btn btn-primary pull-right h2">Novo Cliente</a>
                         </div>
                     </div>
                     <!-- /#top -->
@@ -74,35 +74,31 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>CNPJ</th>
-                                    <th>Razão Social</th>
-                                    <th>Horário Funcionamento</th>
-                                    <th>Temperatura Ar-Condicionado</th>
+                                    <th>Nome</th>
+                                    <th>Celular</th>
+                                    <th>E-Mail</th>
                                     <th class="actions">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
-          					<c:forEach var="empresa" items="${lista }">
+          					<c:forEach var="cliente" items="${lista }">
                                        <tr>
                                             <td>
-                                               ${empresa.idEmpresa }
+                                               ${cliente.id }
                                             </td>
                                             <td>
-                                                ${empresa.cnpj }
+                                                ${cliente.nome }
                                             </td>
                                             <td>
-                                                ${empresa.razaoSocial }
+                                                ${cliente.fone }
                                             </td>
                                             <td>
-                                                ${empresa.horarioDeFuncionamento }
-                                            </td>
-                                            <td>
-                                                ${empresa.temperaturaMaximaAr }
+                                                ${cliente.email }
                                             </td>
                                             <td class="actions">
-                                                <a class="btn btn-success btn-xs" href="controller.do?command=VisualizarEmpresa&id=${empresa.idEmpresa }">Visualizar</a>
-                                                <a class="btn btn-warning btn-xs" href="controller.do?command=EditarEmpresa&id=${empresa.idEmpresa }">Editar</a>
-                                                <button id="btn${empresa.idEmpresa }%>" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" data-cliente="${empresa.idEmpresa }">Excluir</button>
+                                                <a class="btn btn-success btn-xs" href="controller.do?command=VisualizarCliente&id=${cliente.id }">Visualizar</a>
+                                                <a class="btn btn-warning btn-xs" href="controller.do?command=EditarCliente&id=${cliente.id }">Editar</a>
+                                                <button id="btn${cliente.id }%>" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" data-cliente="${cliente.id }">Excluir</button>
                                             </td>
                                         </tr>             
                             </c:forEach>

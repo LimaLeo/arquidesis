@@ -35,7 +35,7 @@ public class ListarEmpresaController extends HttpServlet {
 	
 		EmpresaService es = new EmpresaService();
 		
-		List<Empresa> lista = es.listarEmpresas();
+		List<Empresa> lista = es.carregarTodasEmpresas();
 		
 		
         //enviar para o jsp
