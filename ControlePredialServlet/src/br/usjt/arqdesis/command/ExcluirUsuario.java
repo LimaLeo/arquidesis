@@ -1,11 +1,13 @@
 package br.usjt.arqdesis.command;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.usjt.arqdesis.model.Usuario;
 import br.usjt.arqdesis.service.UsuarioService;
@@ -15,22 +17,53 @@ public class ExcluirUsuario implements Command {
 	@Override
 	public void executar(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		int pIdUsuario = Integer.parseInt(request.getParameter("id-usuario"));
-        
-        //instanciar o javabean
-        Usuario usuario = new Usuario();
-        
-        //instanciar o service
-        UsuarioService us = new UsuarioService();
-        usuario = us.carregar(pIdUsuario);
-        us.excluir(usuario.getIdUsuario());
-        
-        //enviar para o jsp
-        request.setAttribute("usuario", usuario);
-        
-        RequestDispatcher view = 
-        request.getRequestDispatcher("Usuario.jsp");
-        view.forward(request, response);	
+
+		String pIdUsuario = request.getParameter("id");
+		String pNome = request.getParameter("nome");
+		String pTipoUsuario = request.getParameter("tipo-usuario");
+		String pCpf = request.getParameter("cpf");
+		String pLogin = request.getParameter("login");
+		String pSenha = request.getParameter("senha");
+
+		int id = -1;
+		try {
+			id = Integer.parseInt(pIdUsuario);
+		} catch (NumberFormatException e) {
+
+		}
+
+		Usuario usuario = new Usuario();
+		usuario.setIdUsuario(id);
+		usuario.setNomeUsuario(pNome);
+		usuario.setTipoUsuario(pTipoUsuario);
+		usuario.setCpf(pCpf);
+		usuario.setLogin(pLogin);
+		usuario.setSenha(pSenha);
+		UsuarioService us = new UsuarioService();
+
+		RequestDispatcher view = null;
+		HttpSession session = request.getSession();
+
+		us.excluir(usuario.getIdUsuario());
+		@SuppressWarnings("unchecked")
+		ArrayList<Usuario> lista = (ArrayList<Usuario>) session
+				.getAttribute("lista");
+		lista.remove(busca(usuario, lista));
+		session.setAttribute("lista", lista);
+		view = request.getRequestDispatcher("ListarUsuarios.jsp");
+		view.forward(request, response);
+
+	}
+
+	public int busca(Usuario usuario, ArrayList<Usuario> lista) {
+		Usuario to;
+		for (int i = 0; i < lista.size(); i++) {
+			to = lista.get(i);
+			if (to.getIdUsuario() == usuario.getIdUsuario()) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 }

@@ -29,13 +29,21 @@ public class CriarEmpresa implements Command {
 		} catch (NumberFormatException e) {
 
 		}
+		
+        int temperatura = -1;
+		try {
+			temperatura = Integer.parseInt(pTemperaturaMaximaAr);
+		} catch (NumberFormatException e) {
+
+		}
+		
 
         Empresa empresa = new Empresa();
         empresa.setIdEmpresa(id);        
         empresa.setRazaoSocial(pRazaoSocial);
         empresa.setCnpj(pCnpj);
         empresa.setHorarioDeFuncionamento(pHorarioDeFuncionamento);
-        empresa.setTemperaturaMaximaAr(Integer.parseInt(pTemperaturaMaximaAr));
+        empresa.setTemperaturaMaximaAr(temperatura);
         EmpresaService es = new EmpresaService();
         
         RequestDispatcher view = null;

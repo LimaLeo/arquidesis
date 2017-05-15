@@ -22,15 +22,15 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span>
                             </button>
-                            <h4 class="modal-title" id="modalLabel">Excluir Cliente</h4>
+                            <h4 class="modal-title" id="modalLabel">Excluir Usuário</h4>
                         </div>
                         <div class="modal-body">
-                            Deseja realmente excluir este cliente?
+                            Deseja realmente excluir este usuário?
                         </div>
                         <div class="modal-footer">
                             <form action="controller.do" method="post">
                                 <input type="hidden" name="id" id="id_excluir" />
-                                <button type="submit" class="btn btn-primary" name="command" value="ExcluirCliente">Sim</button>
+                                <button type="submit" class="btn btn-primary" name="command" value="ExcluirUsuario">Sim</button>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">N&atilde;o</button>
                             </form>
                         </div>
