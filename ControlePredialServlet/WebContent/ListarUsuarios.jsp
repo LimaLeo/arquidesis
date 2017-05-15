@@ -85,24 +85,24 @@
           					<c:forEach var="usuario" items="${lista }">
                                        <tr>
                                             <td>
-                                               ${usuario.id }
+                                               ${usuario.idUsuario }
                                             </td>
                                             <td>
-                                                ${cliente.nome }
+                                                ${usuario.nomeUsuario }
                                             </td>
                                             <td>
-                                                ${cliente.cpf }
+                                                ${usuario.cpf }
                                             </td>
                                             <td>
-                                                ${cliente.login }
+                                                ${usuario.login }
                                             </td>
                                             <td>
-                                                ${cliente.tipo_usuario }
+                                                ${usuario.tipoUsuario }
                                             </td>
                                             <td class="actions">
-                                                <a class="btn btn-success btn-xs" href="controller.do?command=VisualizarUsuario&id=${usuario.id }">Visualizar</a>
-                                                <a class="btn btn-warning btn-xs" href="controller.do?command=EditarUsuario&id=${usuario.id }">Editar</a>
-                                                <button id="btn${usuario.id }%>" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" data-cliente="${usuario.id }">Excluir</button>
+                                                <a class="btn btn-success btn-xs" href="controller.do?command=VisualizarUsuario&id=${usuario.idUsuario }">Visualizar</a>
+                                                <a class="btn btn-warning btn-xs" href="controller.do?command=EditarUsuario&id=${usuario.idUsuario }">Editar</a>
+                                                <button id="btn${usuario.idUsuario }%>" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" data-cliente="${usuario.idUsuario }">Excluir</button>
                                             </td>
                                         </tr>             
                             </c:forEach>
