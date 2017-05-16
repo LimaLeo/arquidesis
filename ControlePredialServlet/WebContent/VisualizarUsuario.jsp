@@ -28,7 +28,7 @@
                             </div>
                             <div class="modal-footer">
                                 <form action="controller.do" method="post">
-                                    <input type="hidden" name="id" value="${cliente.id }" />
+                                    <input type="hidden" name="id" value="${usuario.idUsuario }" />
                                     <button type="submit" class="btn btn-primary" name="command" value="ExcluirUsuario">Sim</button>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">N&atilde;o</button>
                                 </form>
@@ -106,7 +106,7 @@
                     <hr />
                     <div id="actions" class="row">
                         <div class="col-md-12">
-                            <a href="controller.do?command=AlterarUsuario&idUsuario=${usuario.idUsuario }" class="btn btn-primary">Editar</a>
+                            <a href="controller.do?command=EditarUsuario&id=${usuario.idUsuario }" class="btn btn-primary">Editar</a>
                             <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#delete-modal">Excluir</a>
                             <a href="ListarUsuarios.jsp" class="btn btn-default">Voltar</a>
                         </div>

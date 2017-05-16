@@ -97,7 +97,7 @@
                     <hr />
                     <div id="actions" class="row">
                         <div class="col-md-12">
-                            <a href="controller.do?command=AlterarEmpresa&idEmpresa=${empresa.idEmpresa }" class="btn btn-primary">Editar</a>
+                            <a href="controller.do?command=EditarEmpresa&id=${empresa.idEmpresa }" class="btn btn-primary">Editar</a>
                             <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#delete-modal">Excluir</a>
                             <a href="ListarEmpresas.jsp" class="btn btn-default">Voltar</a>
                         </div>
