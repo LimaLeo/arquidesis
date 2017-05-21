@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionFactory {
+	//singleton da conex„o - thread safe
+	private static final ThreadLocal<Connection> conn = new ThreadLocal<>();
+	
 	static {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -13,10 +16,20 @@ public class ConnectionFactory {
 		}
 	}
 	
-	// Obt√©m conex√£o com o banco de dados
-	public static Connection obtemConexao() throws SQLException {
-		return DriverManager
-				.getConnection("jdbc:mysql://localhost/CONTROLE_PREDIAL?user=root&password=leo88825690");
-	}
+	// ObtÈm conex„o com o banco de dados
+		public static Connection obterConexao() throws SQLException {
+			if (conn.get() == null){
+				conn.set(DriverManager
+						.getConnection("jdbc:mysql://localhost/controle_predial?user=root&password=senha"));
+			}
+			return conn.get();
+		}
+		//Fecha a conex„o - usado no servlet destroy
+		public static void fecharConexao() throws SQLException {
+			if(conn.get() != null){
+				conn.get().close();
+				conn.set(null);
+			}
+		}
 
 }

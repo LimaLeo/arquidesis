@@ -32,4 +32,8 @@ public class UsuarioService {
 		public ArrayList<Usuario> listarUsuarios(String chave){
 			return uDao.listarUsuarios(chave);
 		}
+		
+		public boolean validar(Usuario usuario){
+			return uDao.validar(usuario);
+		}
 }

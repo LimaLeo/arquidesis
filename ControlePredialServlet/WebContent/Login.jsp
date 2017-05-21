@@ -18,13 +18,15 @@
     <!-- Container Principal -->
     <div id="main" class="container">
        <h3 class="page-header">Login</h3>
+       
        <!-- Formulario de Login -->
         <form action="controller.do" method="post">
 				<div class="row col-md-12">
 				<div class="form-group">
 					<div class="input-group col-md-4">
 					   <div class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></div> 
-					   <input type="email" name="username" id="username" class="form-control" maxlength="60" placeholder="E-mail" required/>
+					   
+					   <input type="text" name="username" id="username" class="form-control" maxlength="60" placeholder="Login" required/>
 					</div>
 				</div>
 				<div class="form-group">

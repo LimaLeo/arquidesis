@@ -13,7 +13,7 @@ public class EmpresaDAO {
 	
 	public int criar(Empresa empresa) {
 		String sqlInsert = "INSERT INTO EMPRESA(CNPJ, RAZAO_SOCIAL, HORARIO_FUNCIONAMENTO, TEMPERATURA_MAXIMA_AR) VALUES (?, ?, ?, ?)";
-		try (Connection conn = ConnectionFactory.obtemConexao();
+		try (Connection conn = ConnectionFactory.obterConexao();
 				PreparedStatement ps = conn.prepareStatement(sqlInsert);) {
 			ps.setString(1, empresa.getCnpj());
 			ps.setString(2, empresa.getRazaoSocial());
@@ -38,7 +38,7 @@ public class EmpresaDAO {
 
 	public void atualizar(Empresa empresa) {
 		String sqlUpdate = "UPDATE EMPRESA SET CNPJ = ?, RAZAO_SOCIAL = ?, HORARIO_FUNCIONAMENTO = ?, TEMPERATURA_MAXIMA_AR = ? WHERE ID = ?";
-		try (Connection conn = ConnectionFactory.obtemConexao();
+		try (Connection conn = ConnectionFactory.obterConexao();
 				PreparedStatement ps = conn.prepareStatement(sqlUpdate);) {
 			ps.setString(1, empresa.getCnpj());
 			ps.setString(2, empresa.getRazaoSocial());
@@ -54,7 +54,7 @@ public class EmpresaDAO {
 
 	public void excluir(int id) {
 		String sqlDelete = "DELETE FROM EMPRESA WHERE ID= ?";
-		try (Connection conn = ConnectionFactory.obtemConexao();
+		try (Connection conn = ConnectionFactory.obterConexao();
 				PreparedStatement ps = conn.prepareStatement(sqlDelete);) {
 			ps.setInt(1, id);
 			ps.execute();
@@ -67,7 +67,7 @@ public class EmpresaDAO {
 		Empresa empresa = new Empresa();
 		empresa.setIdEmpresa(id);
 		String sqlSelect = "SELECT CNPJ, RAZAO_SOCIAL, HORARIO_FUNCIONAMENTO, TEMPERATURA_MAXIMA_AR FROM EMPRESA WHERE EMPRESA.ID = ?";
-		try (Connection conn = ConnectionFactory.obtemConexao();
+		try (Connection conn = ConnectionFactory.obterConexao();
 				PreparedStatement ps = conn.prepareStatement(sqlSelect);) {
 			ps.setInt(1, empresa.getIdEmpresa());
 			try (ResultSet rs = ps.executeQuery();) {
@@ -98,7 +98,7 @@ public class EmpresaDAO {
 		
 		String sqlSelect = "SELECT ID, CNPJ, RAZAO_SOCIAL, HORARIO_FUNCIONAMENTO, TEMPERATURA_MAXIMA_AR FROM empresa;";
 		// usando o try with resources do Java 7, que fecha o que abriu
-		try (Connection conn = ConnectionFactory.obtemConexao();
+		try (Connection conn = ConnectionFactory.obterConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			
 			try (ResultSet rs = stm.executeQuery();) {
@@ -129,7 +129,7 @@ public class EmpresaDAO {
 		
 		String sqlSelect = "SELECT ID, CNPJ, RAZAO_SOCIAL, HORARIO_FUNCIONAMENTO, TEMPERATURA_MAXIMA_AR FROM empresa where upper(razao_social) like ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
-		try (Connection conn = ConnectionFactory.obtemConexao();
+		try (Connection conn = ConnectionFactory.obterConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			stm.setString(1, "%" + chave.toUpperCase() + "%");
 			try (ResultSet rs = stm.executeQuery();) {

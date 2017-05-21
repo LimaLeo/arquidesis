@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import br.usjt.arqdesis.model.Usuario;
 
@@ -13,7 +12,7 @@ public class UsuarioDAO {
 	
 	public int criar(Usuario usuario) {
 		String sqlInsert = "INSERT INTO USUARIO(NOME, CPF, LOGIN, SENHA, TIPO_USUARIO) VALUES (?, ?, ?, ?, ?)";
-		try (Connection conn = ConnectionFactory.obtemConexao();
+		try (Connection conn = ConnectionFactory.obterConexao();
 				PreparedStatement ps = conn.prepareStatement(sqlInsert);) {
 			ps.setString(1, usuario.getNomeUsuario());
 			ps.setString(2, usuario.getCpf());
@@ -39,7 +38,7 @@ public class UsuarioDAO {
 
 	public void atualizar(Usuario usuario) {
 		String sqlUpdate = "UPDATE USUARIO SET NOME=?, CPF=?, LOGIN=?, SENHA=?, TIPO_USUARIO=? WHERE ID=?";
-		try (Connection conn = ConnectionFactory.obtemConexao();
+		try (Connection conn = ConnectionFactory.obterConexao();
 				PreparedStatement ps = conn.prepareStatement(sqlUpdate);) {
 			ps.setString(1, usuario.getNomeUsuario());
 			ps.setString(2, usuario.getCpf());
@@ -55,7 +54,7 @@ public class UsuarioDAO {
 
 	public void excluir(int id) {
 		String sqlDelete = "DELETE FROM USUARIO WHERE ID= ?";
-		try (Connection conn = ConnectionFactory.obtemConexao();
+		try (Connection conn = ConnectionFactory.obterConexao();
 				PreparedStatement ps = conn.prepareStatement(sqlDelete);) {
 			ps.setInt(1, id);
 			ps.execute();
@@ -68,7 +67,7 @@ public class UsuarioDAO {
 		Usuario usuario = new Usuario();
 		usuario.setIdUsuario(id);
 		String sqlSelect = "SELECT NOME, CPF, LOGIN, SENHA, TIPO_USUARIO FROM USUARIO WHERE USUARIO.ID=?";
-		try (Connection conn = ConnectionFactory.obtemConexao();
+		try (Connection conn = ConnectionFactory.obterConexao();
 				PreparedStatement ps = conn.prepareStatement(sqlSelect);) {
 			ps.setInt(1, usuario.getIdUsuario());
 			try (ResultSet rs = ps.executeQuery();) {
@@ -102,7 +101,7 @@ public class UsuarioDAO {
 		
 		String sqlSelect = "SELECT ID, NOME, CPF, LOGIN, SENHA, TIPO_USUARIO FROM usuario;";
 		// usando o try with resources do Java 7, que fecha o que abriu
-		try (Connection conn = ConnectionFactory.obtemConexao();
+		try (Connection conn = ConnectionFactory.obterConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			
 			try (ResultSet rs = stm.executeQuery();) {
@@ -133,7 +132,7 @@ public class UsuarioDAO {
 		ArrayList<Usuario> lista = new ArrayList<>();
 		String sqlSelect = "SELECT ID, NOME, CPF, LOGIN, SENHA, TIPO_USUARIO FROM usuario where upper(nome) like ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
-		try (Connection conn = ConnectionFactory.obtemConexao();
+		try (Connection conn = ConnectionFactory.obterConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			stm.setString(1, "%" + chave.toUpperCase() + "%");
 			try (ResultSet rs = stm.executeQuery();) {
@@ -155,5 +154,32 @@ public class UsuarioDAO {
 			System.out.print(e1.getStackTrace());
 		}
 		return lista;
+	}
+	
+	public boolean validar(Usuario usuario) {
+		String sqlSelect = "SELECT login, senha FROM usuario WHERE login = ? and senha = ?";
+		// pega a conexão em um try normal para que ela não seja fechada
+		try {
+			Connection conn = ConnectionFactory.obterConexao();
+			// usando o try with resources do Java 7, que fecha o que abriu
+			try (PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+				stm.setString(1, usuario.getLogin());
+				stm.setString(2, usuario.getSenha());
+				try (ResultSet rs = stm.executeQuery();) {
+					if (rs.next()) {
+						return true;
+					} else {
+						return false;
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (SQLException e1) {
+				System.out.print(e1.getStackTrace());
+			}
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
+		return false;
 	}
 }
