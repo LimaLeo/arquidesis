@@ -12,22 +12,22 @@ import javax.servlet.http.HttpSession;
 import br.usjt.arqdesis.model.Usuario;
 import br.usjt.arqdesis.service.UsuarioService;
 
-public class ExcluirUsuario implements Command {
+public class EditarUsuario implements Command {
 
 	@Override
 	public void executar(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
-		String pIdUsuario = request.getParameter("id");
+		// TODO Auto-generated method stub
+		String pId = request.getParameter("id");
 		String pNome = request.getParameter("nome");
-		String pTipoUsuario = request.getParameter("tipo-usuario");
 		String pCpf = request.getParameter("cpf");
 		String pLogin = request.getParameter("login");
 		String pSenha = request.getParameter("senha");
+		String pTipoUsuario = request.getParameter("tipo-usuario");
 
 		int id = -1;
 		try {
-			id = Integer.parseInt(pIdUsuario);
+			id = Integer.parseInt(pId);
 		} catch (NumberFormatException e) {
 
 		}
@@ -35,22 +35,19 @@ public class ExcluirUsuario implements Command {
 		Usuario usuario = new Usuario();
 		usuario.setIdUsuario(id);
 		usuario.setNomeUsuario(pNome);
-		usuario.setTipoUsuario(pTipoUsuario);
 		usuario.setCpf(pCpf);
 		usuario.setLogin(pLogin);
 		usuario.setSenha(pSenha);
+		usuario.setTipoUsuario(pTipoUsuario);
 		UsuarioService us = new UsuarioService();
 
 		RequestDispatcher view = null;
 		HttpSession session = request.getSession();
 
-		us.excluir(usuario.getIdUsuario());
-		@SuppressWarnings("unchecked")
-		ArrayList<Usuario> lista = (ArrayList<Usuario>) session
-				.getAttribute("lista");
-		lista.remove(busca(usuario, lista));
-		session.setAttribute("lista", lista);
-		view = request.getRequestDispatcher("ListarUsuarios.jsp");
+		usuario = us.carregar(usuario.getIdUsuario());
+		request.setAttribute("usuario", usuario);
+		view = request.getRequestDispatcher("AlterarUsuario.jsp");
+
 		view.forward(request, response);
 
 	}

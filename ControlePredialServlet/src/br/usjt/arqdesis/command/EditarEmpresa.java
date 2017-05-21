@@ -12,18 +12,17 @@ import javax.servlet.http.HttpSession;
 import br.usjt.arqdesis.model.Empresa;
 import br.usjt.arqdesis.service.EmpresaService;
 
-public class ExcluirEmpresa implements Command {
+public class EditarEmpresa implements Command {
 
 	@Override
 	public void executar(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		String pIdEmpresa = request.getParameter("id");
 		String pRazaoSocial = request.getParameter("razao-social");
 		String pCnpj = request.getParameter("cnpj");
-		String pHorarioDeFuncionamento = request
-				.getParameter("horario-de-funcionamento");
-		String pTemperaturaMaximaAr = request
-				.getParameter("temperatura-maxima-ar");
+		String pHorarioDeFuncionamento = request.getParameter("horario-de-funcionamento");
+		String pTemperaturaMaximaAr = request.getParameter("temperatura-maxima-ar");
 
 		int id = -1;
 		try {
@@ -50,13 +49,10 @@ public class ExcluirEmpresa implements Command {
 		RequestDispatcher view = null;
 		HttpSession session = request.getSession();
 
-		es.excluir(empresa.getIdEmpresa());
-		@SuppressWarnings("unchecked")
-		ArrayList<Empresa> lista = (ArrayList<Empresa>) session
-				.getAttribute("lista");
-		lista.remove(busca(empresa, lista));
-		session.setAttribute("lista", lista);
-		view = request.getRequestDispatcher("ListarEmpresas.jsp");
+		empresa = es.carregar(empresa.getIdEmpresa());
+		request.setAttribute("empresa", empresa);
+		view = request.getRequestDispatcher("AlterarEmpresa.jsp");
+
 		view.forward(request, response);
 
 	}

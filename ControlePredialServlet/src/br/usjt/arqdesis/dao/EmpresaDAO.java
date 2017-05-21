@@ -139,7 +139,7 @@ public class EmpresaDAO {
 					empresa.setCnpj(rs.getString("CNPJ"));
 					empresa.setRazaoSocial(rs.getString("RAZAO_SOCIAL"));
 					empresa.setHorarioDeFuncionamento(rs.getString("HORARIO_FUNCIONAMENTO"));
-					empresa.setTemperaturaMaximaAr(rs.getInt("TEMPERATURA_MAXIMA_AR"));
+					empresa.setTemperaturaMaximaAr(rs.getInt("TEMPERATURA_MAXIMA_AR"));					
 					
 					lista.add(empresa);					
 				} 
