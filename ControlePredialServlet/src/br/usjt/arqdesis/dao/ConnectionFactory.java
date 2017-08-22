@@ -20,7 +20,7 @@ public class ConnectionFactory {
 		public static Connection obterConexao() throws SQLException {
 			if (conn.get() == null){
 				conn.set(DriverManager
-						.getConnection("jdbc:mysql://localhost/controle_predial?user=root&password=senha"));
+						.getConnection("jdbc:mysql://localhost/controle_predial?user=root&password=root"));
 			}
 			return conn.get();
 		}
